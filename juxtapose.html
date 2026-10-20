@@ -2,16 +2,36 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ariel Aizemberg</title>
-  <link rel="stylesheet" href="https://cdn.knightlab.com/libs/juxtapose/latest/css/juxtapose.css">  
+  <link rel="stylesheet" href="https://cdn.knightlab.com/libs/juxtapose/latest/css/juxtapose.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 16px;
+      font-family: system-ui, sans-serif;
+      text-align: center;
+    }
+    h1 {
+      font-size: clamp(1.5rem, 5vw, 2.5rem);
+    }
+    .contenedor {
+      width: 100%;
+      max-width: 400px;   /* tamaño maximo   */
+      margin: 0 auto;     /* slider centrado */
+    }
+  </style>
 </head>
 <body>
   <h1>Ariel Aizemberg</h1>
-  <div class="juxtapose">
-    <img src="https://aaizemberg.github.io/beforeafter/images/Ariel_con_barba.jpg" />
-    <img src="https://aaizemberg.github.io/beforeafter/images/Ariel_after_shave_letras.jpg" />
+
+  <div class="contenedor">
+    <div class="juxtapose">
+      <img src="https://aaizemberg.github.io/beforeafter/images/Ariel_con_barba.jpg" />
+      <img src="https://aaizemberg.github.io/beforeafter/images/Ariel_after_shave_letras.jpg" />
+    </div>
   </div>
+
   <script src="https://cdn.knightlab.com/libs/juxtapose/latest/js/juxtapose.min.js"></script>
 </body>
 </html>
