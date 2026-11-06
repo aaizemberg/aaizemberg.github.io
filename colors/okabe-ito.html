@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Paleta de colores Okabe-Ito</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 40px;
+      color: #333;
+    }
+
+    h1 {
+      font-size: 22px;
+      margin-bottom: 25px;
+    }
+
+    svg {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .color-label {
+      font-size: 11px;
+      fill: #555;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Paleta de colores Okabe-Ito</h1>
+
+  <div id="palette"></div>
+
+  <script>
+
+    const colores = [
+      {"r":0,"g":0,"b":0,"hex":"#000000"},
+      {"r":230,"g":159,"b":0,"hex":"#E69F00"},
+      {"r":86,"g":180,"b":233,"hex":"#56B4E9"},
+      {"r":0,"g":158,"b":115,"hex":"#009E73"},
+      {"r":240,"g":228,"b":66,"hex":"#F0E442"},
+      {"r":0,"g":114,"b":178,"hex":"#0072B2"},
+      {"r":213,"g":94,"b":0,"hex":"#D55E00"},
+      {"r":204,"g":121,"b":167,"hex":"#CC79A7"}
+    ];
+
+    // Dimensiones
+    const width = 640;
+    const height = 115;
+
+    const margin = {
+      top: 10,
+      right: 10,
+      bottom: 30,
+      left: 10
+    };
+
+    const innerWidth = width - margin.left - margin.right;
+
+    const rectWidth = innerWidth / colores.length;
+
+    // Crear SVG
+    const svg = d3.select("#palette")
+      .append("svg")
+      .attr("width", width)
+      .attr("height", height)
+      .attr("viewBox", `0 0 ${width} ${height}`);
+
+    const g = svg.append("g")
+      .attr("transform",
+        `translate(${margin.left},${margin.top})`);
+
+    // Rectángulos
+    g.selectAll("rect")
+      .data(colores)
+      .join("rect")
+      .attr("x", (d, i) => i * rectWidth)
+      .attr("y", 0)
+      .attr("width", rectWidth)
+      .attr("height", 40)
+      .attr("fill", d => d.hex);
+
+// Etiquetas HEX
+g.selectAll(".hex-label")
+  .data(colores)
+  .join("text")
+  .attr("class", "color-label hex-label")
+  .attr("x", (d, i) => i * rectWidth + rectWidth / 2)
+  .attr("y", 58)
+  .attr("text-anchor", "middle")
+  .text(d => d.hex);
+
+// Etiquetas RGB
+g.selectAll(".rgb-label")
+  .data(colores)
+  .join("text")
+  .attr("class", "color-label rgb-label")
+  .attr("x", (d, i) => i * rectWidth + rectWidth / 2)
+  .attr("y", 75)
+  .attr("text-anchor", "middle")
+  .text(d => `${d.r},${d.g},${d.b}`);
+  </script>
+
+</body>
+</html>
