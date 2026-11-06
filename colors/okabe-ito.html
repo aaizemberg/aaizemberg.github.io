@@ -32,13 +32,11 @@
 </head>
 
 <body>
-
   <h1>Paleta de colores Okabe-Ito</h1>
-
   <div id="palette"></div>
-
+  <footer><a href="https://conceptviz.app/blog/okabe-ito-palette-hex-codes-complete-reference">Okabe-Ito Palette Hex Codes for Python, R & CSS</a></footer>
+  
   <script>
-
     const colores = [
       {"r":0,"g":0,"b":0,"hex":"#000000"},
       {"r":230,"g":159,"b":0,"hex":"#E69F00"},
@@ -65,7 +63,6 @@
 
     const rectWidth = innerWidth / colores.length;
 
-    // Crear SVG
     const svg = d3.select("#palette")
       .append("svg")
       .attr("width", width)
@@ -76,32 +73,29 @@
       .attr("transform",
         `translate(${margin.left},${margin.top})`);
 
-    // Rectángulos
     g.selectAll("rect")
       .data(colores)
       .join("rect")
-      .attr("x", (d, i) => i * rectWidth)
+      .attr("x", (_, i) => i * rectWidth)
       .attr("y", 0)
       .attr("width", rectWidth)
       .attr("height", 40)
       .attr("fill", d => d.hex);
 
-// Etiquetas HEX
 g.selectAll(".hex-label")
   .data(colores)
   .join("text")
   .attr("class", "color-label hex-label")
-  .attr("x", (d, i) => i * rectWidth + rectWidth / 2)
+  .attr("x", (_, i) => i * rectWidth + rectWidth / 2)
   .attr("y", 58)
   .attr("text-anchor", "middle")
   .text(d => d.hex);
 
-// Etiquetas RGB
 g.selectAll(".rgb-label")
   .data(colores)
   .join("text")
   .attr("class", "color-label rgb-label")
-  .attr("x", (d, i) => i * rectWidth + rectWidth / 2)
+  .attr("x", (_, i) => i * rectWidth + rectWidth / 2)
   .attr("y", 75)
   .attr("text-anchor", "middle")
   .text(d => `${d.r},${d.g},${d.b}`);
